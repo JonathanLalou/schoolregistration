@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,6 +28,12 @@ import java.util.Optional;
 public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
+
+    @GetMapping(path = "/courses/", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<Course> getCourses() {
+        return courseRepository.findAll();
+    }
 
     @GetMapping(path = "/course/{courseId}", produces = "application/json; charset=UTF-8")
     @ResponseBody
