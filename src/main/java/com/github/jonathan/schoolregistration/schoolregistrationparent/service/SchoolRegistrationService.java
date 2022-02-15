@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @Getter
@@ -97,5 +98,25 @@ public class SchoolRegistrationService {
                 .stream()
                 .filter(course -> courseRepository.findByCode(course.getCode()).isEmpty())
                 .forEach(course -> courseRepository.save(course));
+    }
+
+    public List<Course> findCoursesByStudentId(Long studentId) {
+        final Optional<Student> optionalStudent = studentRepository.findById(studentId);
+        return optionalStudent.map(
+                        student -> registrationRepository
+                                .findByStudent(student)
+                                .stream().map(Registration::getCourse)
+                                .collect(Collectors.toList()))
+                .orElseGet(List::of);
+    }
+
+    public List<Student> findStudentsByCourseId(Long courseId) {
+        final Optional<Course> optionalCourse = courseRepository.findById(courseId);
+        return optionalCourse.map(
+                        course -> registrationRepository
+                                .findByCourse(course)
+                                .stream().map(Registration::getStudent)
+                                .collect(Collectors.toList()))
+                .orElseGet(List::of);
     }
 }

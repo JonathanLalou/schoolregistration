@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RegistrationRepository extends JpaRepository<Registration, Long> {
     boolean existsByStudentAndCourse(Student student, Course course);
@@ -14,4 +16,8 @@ public interface RegistrationRepository extends JpaRepository<Registration, Long
     Long countByCourse(Course course);
 
     Long countByStudent(Student student);
+
+    List<Registration> findByStudent(Student student);
+
+    List<Registration> findByCourse(Course course);
 }

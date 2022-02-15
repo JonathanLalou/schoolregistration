@@ -36,11 +36,11 @@ public class Registration implements Serializable {
     @GeneratedValue
     private Long registrationId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = STUDENT_ID)
     private Student student;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = COURSE_ID)
     private Course course;
 
