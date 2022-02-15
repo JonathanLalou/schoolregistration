@@ -9,6 +9,7 @@ import lombok.NonNull;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.UniqueConstraint;
 import javax.persistence.Version;
 import java.io.Serializable;
 import java.util.Date;
@@ -25,6 +26,7 @@ public class Course implements Serializable {
     @GeneratedValue
     private Long courseId;
 
+    @NonNull // TODO add a uniqueness constraint
     private String code;
 
     @NonNull
