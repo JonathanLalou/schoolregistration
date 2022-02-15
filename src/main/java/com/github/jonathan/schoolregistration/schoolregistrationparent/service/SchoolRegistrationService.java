@@ -33,7 +33,7 @@ public class SchoolRegistrationService {
         );
         initialStudentList
                 .stream()
-                .filter(student -> studentRepository.findByFirstNameAndLastName(student.getFirstName(), student.getFirstName()).isEmpty())
+                .filter(student -> !studentRepository.existsByFirstNameAndLastName(student.getFirstName(), student.getLastName()))
                 .forEach(student -> studentRepository.save(student));
 
         final List<Course> initialCourseList = List.of(

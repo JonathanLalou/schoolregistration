@@ -1,13 +1,10 @@
 package com.github.jonathan.schoolregistration.schoolregistrationparent.dao;
 
-import com.github.jonathan.schoolregistration.schoolregistrationparent.domain.Course;
 import com.github.jonathan.schoolregistration.schoolregistrationparent.domain.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import java.util.Optional;
-
-@Repository
+@RepositoryRestResource(collectionResourceRel = "students", path = "students")
 public interface StudentRepository extends JpaRepository<Student, Long> {
-    Optional<Student> findByFirstNameAndLastName(String firstName, String lastName);
+    boolean existsByFirstNameAndLastName(String firstName, String lastName);
 }
