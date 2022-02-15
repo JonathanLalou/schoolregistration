@@ -3,6 +3,7 @@ package com.github.jonathan.schoolregistration.schoolregistrationparent.controll
 import com.github.jonathan.schoolregistration.schoolregistrationparent.dao.CourseRepository;
 import com.github.jonathan.schoolregistration.schoolregistrationparent.domain.Course;
 import com.github.jonathan.schoolregistration.schoolregistrationparent.exception.CannotCreateCourseException;
+import com.github.jonathan.schoolregistration.schoolregistrationparent.exception.CannotUpdateCourseException;
 import com.github.jonathan.schoolregistration.schoolregistrationparent.exception.CourseNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,5 +55,22 @@ public class CourseController {
             return courseRepository.save(course);
         }
         throw new CannotCreateCourseException(course);
+    }
+
+    @PutMapping(path = "/course/{courseId}", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public Course putCourse(
+            @PathVariable Long courseId
+            , @RequestBody Course course
+    ) throws CannotUpdateCourseException {
+        final Optional<Course> optionalCourse = courseRepository.findById(courseId);
+        if (optionalCourse.isPresent()) {
+            final Course entity = optionalCourse.get();
+            entity.setCode(course.getCode());
+            entity.setComment(course.getComment());
+            entity.setName(course.getName());
+            return courseRepository.save(entity);
+        }
+        throw new CannotUpdateCourseException(course);
     }
 }
