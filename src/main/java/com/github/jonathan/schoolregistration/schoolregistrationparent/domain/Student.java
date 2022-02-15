@@ -1,5 +1,6 @@
 package com.github.jonathan.schoolregistration.schoolregistrationparent.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,11 +25,12 @@ import static com.github.jonathan.schoolregistration.schoolregistrationparent.do
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = Student.MI_STUDENT, uniqueConstraints = @UniqueConstraint(name = "UK_STUDENT_NAMES", columnNames = {FIRST_NAME, LAST_NAME}))
+@Table(name = Student.MI_STUDENT, uniqueConstraints = @UniqueConstraint(name = Student.UK_STUDENT_NAMES, columnNames = {FIRST_NAME, LAST_NAME}))
 public class Student implements Serializable {
     public static final String MI_STUDENT = "MI_STUDENT";
     public static final String FIRST_NAME = "first_name";
     public static final String LAST_NAME = "last_name";
+    public static final String UK_STUDENT_NAMES = "UK_STUDENT_NAMES";
 
     @Id
     @GeneratedValue
