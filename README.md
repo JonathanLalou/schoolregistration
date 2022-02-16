@@ -59,7 +59,7 @@ Other operations are possible for `/registrations`.
 
 **WARNING** 
 To register a student to a course, call this URL:
-http://localhost:9090/registration/?studentId=<studentId>&courseId=<courseId>
+`http://localhost:9090/registration/?studentId=<studentId>&courseId=<courseId>`
 
 Please refer to Swagger UI for full and complete documentation.
 
