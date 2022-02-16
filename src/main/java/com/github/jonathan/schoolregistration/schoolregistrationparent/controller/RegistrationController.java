@@ -47,7 +47,19 @@ public class RegistrationController {
 
     @GetMapping(path = "/registrations/byCourseId/{courseId}")
     @ResponseBody
-    public ResponseEntity<List<Student>> findCoursesByCourseId(@PathVariable Long courseId) throws CannotCreateRegistrationException {
+    public ResponseEntity<List<Student>> findCoursesByCourseId(@PathVariable Long courseId) {
         return ResponseEntity.ok(schoolRegistrationService.findStudentsByCourseId(courseId));
+    }
+
+    @GetMapping(path = "/registrations/students/withoutCourse")
+    @ResponseBody
+    public ResponseEntity<List<Student>> findStudentsWithoutCourse()  {
+        return ResponseEntity.ok(schoolRegistrationService.findStudentsWithoutCourse());
+    }
+
+    @GetMapping(path = "/registrations/courses/withoutStudent")
+    @ResponseBody
+    public ResponseEntity<List<Course>> findCoursesWithoutStudent()  {
+        return ResponseEntity.ok(schoolRegistrationService.findCoursesWithoutStudent());
     }
 }

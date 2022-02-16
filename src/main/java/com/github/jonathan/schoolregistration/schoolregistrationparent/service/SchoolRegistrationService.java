@@ -119,4 +119,12 @@ public class SchoolRegistrationService {
                                 .collect(Collectors.toList()))
                 .orElseGet(List::of);
     }
+
+    public List<Student> findStudentsWithoutCourse() {
+        return registrationRepository.findStudentsWithoutCourse();
+    }
+
+    public List<Course> findCoursesWithoutStudent() {
+        return registrationRepository.findCoursesWithoutStudent();
+    }
 }
