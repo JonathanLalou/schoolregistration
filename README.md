@@ -97,3 +97,8 @@ The application is a good old monolith. Why not microservices? Simply because I 
 If I had had more time, 
 * I would have used Feign and SpringCloud to make the microservices work with each other.
 * I would have added NGinx as a front end to redirect the requests to the proper microservice.
+
+# Video Demo
+
+A video demo is available here:
+https://youtu.be/RawHDBzAExI
