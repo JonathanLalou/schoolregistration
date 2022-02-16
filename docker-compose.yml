@@ -18,3 +18,11 @@ services:
         - ./etc/init.sql:/docker-entrypoint-initdb.d/init-script.sql
         - ./dbdata:/var/lib/mysql
     container_name: mysqldb
+  schoolregistration:
+    image: schoolregistration:0.0.1-SNAPSHOT
+    ports:
+      - 9090:9090
+    environment:
+      - MYSQL_HOST=mysql
+    depends_on:
+      - mysql
